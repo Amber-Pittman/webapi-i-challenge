@@ -6,6 +6,7 @@ const Users = require('./data/db.js');
 
 // create the server
 const server = express();
+server.use(express.json())
 
 server.get('/', (req, res) => {
     res.send('Hey all y\'all!')
@@ -38,6 +39,26 @@ server.get('/hobbits', (req, res) => {
     // set headers
     res.status(200).json(hobbits)
 })
+
+
+server.post('/hobbits', (req, res) => {
+    res.status(201).json({
+        url: '/hobbits',
+        operation: 'POST',
+    })
+})
+
+server.put('/hobbits', (req, res) => {
+    res.status(200).json({
+        url: '/hobbits',
+        operation: 'PUT',
+    })
+})
+
+server.delete('/hobbits', (req, res) => {
+    res.sendStatus(204).json(console.log("Delete successful"))
+})
+
 
 // get server to listen for people looking for our specific server
 server.listen(8000, () => console.log('API running on port 8000'));
